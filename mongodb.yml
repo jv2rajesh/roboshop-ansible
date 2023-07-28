@@ -17,11 +17,11 @@
 
     - name: Update listen address in monogodb configuration
       ansible.builtin.replace:
-          path: /etc/mongod-conf
-          regexp: '127.0.0.1'
-          replace: '0.0.0.0'
+        path: /etc/mongod-conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
 
-    - name: Restart mongodb
+    - name: Start mongodb service
       ansible.builtin.systemd:
         name: mongod
         state: restarted
