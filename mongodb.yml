@@ -13,11 +13,11 @@
     - name: Install mongodb
       ansible.builtin.yum:
         name: mongodb-org
-        state: latest
+        state: installed
 
     - name: Update listen address in monogodb configuration
       ansible.builtin.replace:
-        path: /etc/mongod-conf
+        path: /etc/mongod.conf
         regexp: '127.0.0.1'
         replace: '0.0.0.0'
 
