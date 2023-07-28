@@ -5,16 +5,27 @@
   become: true
 
   tasks:
-    - name: copying mongodb repo file
+    - name: Copying mongodb repo file
       ansible.builtin.copy:
         src: mongo.repo
         dest: /etc/yum.repos.d/mongo.rep
 
-    - name: install mongodb
+    - name: Install mongodb
       ansible.builtin.yum:
         name: mongodb-org
         state: latest
-    - name:
+
+    - name: Update listen address in monogodb configuration
+        ansible.builtin.replace:
+          path: /etc/mongod.conf
+          regexp: '127.0.0.1'
+          replace: '0.0.0.0'
+
+    - name: Restart mongodb
+        ansible.builtin.systemd:
+          name: mongod
+          state: restarted
+          enabled: yes
 
 
 
@@ -22,8 +33,6 @@
 
 
 
-
-  yum install mongodb-org -y
-  # update listen file
+  sed -i 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
   systemctl enable mongod
   systemctl restart mongod
