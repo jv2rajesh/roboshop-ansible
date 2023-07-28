@@ -2,7 +2,7 @@
 
 - name: Roboshop mongodb
   hosts: all
-  become: true
+  become: yes
 
   tasks:
     - name: Copying mongodb repo file
