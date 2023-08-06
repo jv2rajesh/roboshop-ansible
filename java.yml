@@ -4,7 +4,7 @@
     name: maven
     state: installed
 
-- name: App prerequisites
+- name: App pre-requisites
   ansible.builtin.import_tasks: app-preq.yml
 
 
