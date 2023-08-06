@@ -6,6 +6,6 @@
     schema: true
 
   tasks:
-    - name: nodejs setup
-      ansible.builtin.import_tasks: nodejs.yml
+    - name: java setup
+      ansible.builtin.import_tasks: java.yml
 
